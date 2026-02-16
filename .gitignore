@@ -1,0 +1,20 @@
+.DS_Store
+.idea
+.vscode
+*.log
+
+# Laravel app
+laravel-app/vendor
+laravel-app/node_modules
+laravel-app/.env
+laravel-app/.env.backup
+laravel-app/.env.production
+laravel-app/public/build
+laravel-app/public/hot
+laravel-app/public/storage
+laravel-app/storage/*.key
+laravel-app/storage/pail
+laravel-app/bootstrap/cache/*
+laravel-app/storage/logs/*
+laravel-app/.phpunit.cache
+laravel-app/.phpunit.result.cache
