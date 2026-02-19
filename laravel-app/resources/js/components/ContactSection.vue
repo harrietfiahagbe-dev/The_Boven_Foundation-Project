@@ -157,4 +157,22 @@ async function submit() {
   box-shadow: 0 8px 24px rgba(13, 92, 26, 0.35);
 }
 .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+@media (max-width: 768px) {
+  .contact { padding: 3rem 1.25rem; }
+  .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+  .contact-grid { gap: 2rem; }
+  .contact-info { text-align: center; }
+  .contact-info p { font-size: 0.9375rem; }
+  .contact-form { gap: 1rem; }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+  }
+  .btn-submit {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+    width: 100%;
+  }
+}
 </style>

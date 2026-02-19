@@ -177,6 +177,24 @@ onMounted(async () => {
   .team-card { max-width: none; }
 }
 @media (max-width: 768px) {
-  .team { padding: 3.5rem 1.5rem; }
+  .team { padding: 3rem 1.25rem; }
+  .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+  .team-card {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+  .team-photo img,
+  .team-placeholder {
+    width: 96px;
+    height: 96px;
+  }
+  .team-name { font-size: 1.125rem; }
+  .team-title { font-size: 0.875rem; }
+  .team-bio { font-size: 0.875rem; }
 }
 </style>

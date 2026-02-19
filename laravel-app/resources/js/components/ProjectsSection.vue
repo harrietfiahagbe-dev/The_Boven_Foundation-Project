@@ -153,7 +153,26 @@ onMounted(async () => {
   margin-top: 0.75rem;
 }
 @media (max-width: 768px) {
-  .projects { padding: 3.5rem 1.5rem; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects { padding: 3rem 1.25rem; }
+  .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+  .projects-grid { 
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .project-card {
+    border-radius: 16px;
+  }
+  .project-image img {
+    height: 180px;
+  }
+  .project-body {
+    padding: 1.25rem;
+  }
+  .project-title {
+    font-size: 1.125rem;
+  }
+  .project-desc {
+    font-size: 0.875rem;
+  }
 }
 </style>

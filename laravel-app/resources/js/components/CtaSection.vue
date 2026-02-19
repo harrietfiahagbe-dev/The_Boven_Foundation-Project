@@ -1,11 +1,18 @@
 <script setup>
+import { inject } from 'vue';
 import { useInView } from '../composables/useInView';
+import { useSmoothScroll } from '../composables/useSmoothScroll';
 
+const openDonateModal = inject('openDonateModal', () => {});
 const { targetRef, inView } = useInView();
+const { scrollToElement } = useSmoothScroll();
 
 function scrollTo(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  scrollToElement(`#${id}`, 80);
+}
+
+function goToDonate() {
+  openDonateModal();
 }
 </script>
 
@@ -16,8 +23,7 @@ function scrollTo(id) {
       <h2 class="cta-title reveal reveal-delay-1">DONATE</h2>
       <p class="cta-text reveal reveal-delay-2">Your support helps us bring STEM education to more communities. Donate today to create lasting change for underserved youth.</p>
       <div class="cta-buttons reveal reveal-delay-3">
-        <a href="mailto:thebovenfoundation@gmail.com?subject=Donation%20to%20The%20Boven%20Foundation" class="btn btn-accent">Donate Now</a>
-        <button type="button" class="btn btn-outline" @click="scrollTo('contact')">Contact Us</button>
+        <button type="button" class="btn btn-accent" @click="goToDonate">Donate Now</button>
       </div>
     </div>
   </section>
@@ -102,5 +108,23 @@ function scrollTo(id) {
   background: #1a1f1a;
   color: var(--color-accent);
   transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .cta { padding: 3rem 1.25rem; }
+  .cta-title { font-size: 1.5rem; }
+  .cta-text {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.875rem;
+  }
+  .btn {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+  }
 }
 </style>

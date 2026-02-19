@@ -1,8 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import axios from 'axios';
+import { useSmoothScroll } from '../composables/useSmoothScroll';
 
+const openDonateModal = inject('openDonateModal', () => {});
 const tagline = ref('Igniting Minds, Transforming Communities');
+const { scrollToElement } = useSmoothScroll();
 
 onMounted(async () => {
   try {
@@ -12,8 +15,11 @@ onMounted(async () => {
 });
 
 function scrollTo(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
+  scrollToElement(`#${id}`, 80);
+}
+
+function goToDonate() {
+  openDonateModal();
 }
 </script>
 
@@ -28,8 +34,7 @@ function scrollTo(id) {
       <nav class="footer-links">
         <a href="#about" @click.prevent="scrollTo('about')">About Us</a>
         <a href="#mission" @click.prevent="scrollTo('mission')">Vision & Mission</a>
-        <a href="#cta" @click.prevent="scrollTo('cta')">Donate</a>
-        <a href="#contact" @click.prevent="scrollTo('contact')">Contact Us</a>
+        <a href="#donate" @click.prevent="goToDonate">Donate</a>
       </nav>
       <p class="footer-copy">© {{ new Date().getFullYear() }} The Boven Foundation. All Rights Reserved.</p>
     </div>
@@ -82,4 +87,27 @@ function scrollTo(id) {
 }
 .footer-links a:hover { opacity: 0.85; }
 .footer-copy { margin: 0; font-size: 0.875rem; opacity: 0.8; }
+@media (max-width: 768px) {
+  .footer {
+    padding: 2.5rem 1.25rem;
+  }
+  .footer-brand strong {
+    font-size: 1.125rem;
+  }
+  .footer-tagline {
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+  .footer-links {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .footer-links a {
+    font-size: 0.875rem;
+  }
+  .footer-copy {
+    font-size: 0.8125rem;
+  }
+}
 </style>

@@ -204,7 +204,20 @@ function toggleStat(key) {
   opacity: 0.95;
 }
 @media (max-width: 768px) {
-  .impact { padding: 3.5rem 1.5rem; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .impact { padding: 3rem 1.25rem; }
+  .impact-title { font-size: 1.5rem; margin-bottom: 2rem; }
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .stat-box {
+    padding: 1.25rem 1rem;
+  }
+  .stat-number {
+    font-size: 1.75rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+  }
 }
 </style>
