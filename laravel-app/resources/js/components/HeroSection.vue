@@ -105,10 +105,12 @@ function goToSlide(index) {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transform: scale(1.03);
+  transition: opacity 1s var(--ease-out-quart), transform 1.2s var(--ease-out-quart);
 }
 .hero-slide.active {
   opacity: 1;
+  transform: scale(1);
 }
 .hero-overlay {
   position: absolute;
@@ -168,6 +170,9 @@ function goToSlide(index) {
   text-shadow: none;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
+.hero-btn:active {
+  transform: translateY(0) scale(0.98);
+}
 .hero-btn-primary {
   background: var(--color-primary);
   color: #fff;
@@ -208,12 +213,15 @@ function goToSlide(index) {
   border: 2px solid rgba(255, 255, 255, 0.5);
   background: transparent;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s var(--ease-out-quart);
   padding: 0;
 }
 .slider-dot:hover {
   border-color: rgba(255, 255, 255, 0.8);
   transform: scale(1.2);
+}
+.slider-dot:active {
+  transform: scale(0.95);
 }
 .slider-dot.active {
   background: rgba(255, 255, 255, 0.9);
@@ -235,6 +243,7 @@ function goToSlide(index) {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  animation: scroll-hint-fade 1.2s var(--ease-out-expo) 1s both;
 }
 .scroll-line {
   width: 1px;
@@ -242,6 +251,10 @@ function goToSlide(index) {
   background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
   border-radius: 2px;
   animation: float 2s var(--ease-out-quart) infinite;
+}
+@keyframes scroll-hint-fade {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 @media (max-width: 768px) {
   .hero { 

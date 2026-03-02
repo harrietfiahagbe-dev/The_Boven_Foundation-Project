@@ -5,6 +5,7 @@ import { useSmoothScroll } from '../composables/useSmoothScroll';
 const openDonateModal = inject('openDonateModal', () => {});
 const menuOpen = ref(false);
 const scrolled = ref(false);
+const visible = ref(false);
 const { scrollToElement } = useSmoothScroll();
 
 function scrollTo(id) {
@@ -18,6 +19,7 @@ function goToDonate() {
 }
 
 onMounted(() => {
+  requestAnimationFrame(() => { visible.value = true; });
   const onScroll = () => { scrolled.value = window.scrollY > 24; };
   window.addEventListener('scroll', onScroll, { passive: true });
   onUnmounted(() => window.removeEventListener('scroll', onScroll));
@@ -25,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="navbar" :class="{ scrolled }">
+  <nav class="navbar" :class="{ scrolled, visible }">
     <div class="navbar-inner">
       <ul class="nav-links nav-links-left">
         <li><a href="#about" @click.prevent="scrollTo('about')">About Us</a></li>
@@ -72,7 +74,15 @@ onMounted(() => {
   border-bottom: 1px solid var(--color-border);
   transition:
     box-shadow var(--duration-normal) var(--ease-out-quart),
-    border-color var(--duration-normal);
+    border-color var(--duration-normal),
+    transform 0.5s var(--ease-out-expo),
+    opacity 0.5s var(--ease-out-expo);
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.navbar.visible {
+  transform: translateY(0);
+  opacity: 1;
 }
 .navbar.scrolled {
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
@@ -145,7 +155,10 @@ onMounted(() => {
   font-weight: 500;
   position: relative;
   padding: 0.25rem 0;
-  transition: color var(--duration-fast);
+  transition: color var(--duration-fast), transform var(--duration-fast);
+}
+.nav-links a:active {
+  transform: scale(0.98);
 }
 .nav-links a::after {
   content: '';

@@ -47,7 +47,7 @@ provide('closeDonateModal', closeDonateModal);
 
 <template>
   <div class="app-container boven-body">
-    <div class="scroll-progress" :style="{ width: 'var(--scroll-progress, 0%)' }"></div>
+    <div class="scroll-progress" :style="{ width: 'var(--scroll-progress, 0%)' }" aria-hidden="true"></div>
     <div class="landing-page">
       <NavBar />
       <main>

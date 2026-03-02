@@ -107,11 +107,15 @@ onMounted(async () => {
   padding: 2rem;
   text-align: center;
   border: 1px solid var(--color-border);
-  transition: transform var(--duration-normal), box-shadow var(--duration-normal);
+  transition: transform var(--duration-normal) var(--ease-out-expo), box-shadow var(--duration-normal) var(--ease-out-expo), border-color var(--duration-fast);
 }
 .team-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(13, 92, 26, 0.1);
+  border-color: rgba(13, 92, 26, 0.15);
+}
+.team-card:active {
+  transform: translateY(-3px) scale(0.99);
 }
 .team-photo { margin-bottom: 1.25rem; }
 .team-photo img,

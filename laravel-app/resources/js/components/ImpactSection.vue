@@ -185,6 +185,9 @@ function toggleStat(key) {
   border-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
+.stat-box:active {
+  transform: translateY(-3px) scale(0.98);
+}
 .stat-box.active {
   transform: scale(1.05);
   background: rgba(255, 255, 255, 0.22);

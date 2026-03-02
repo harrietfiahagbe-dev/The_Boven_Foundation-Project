@@ -4,12 +4,9 @@ import axios from 'axios';
 import { useInView } from '../composables/useInView';
 
 const PROJECT_PLACEHOLDER_IMAGES = [
-  'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600',
-  'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600',
-  'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600',
-  'https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600',
-  'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600',
-  'https://images.unsplash.com/photo-1568667256549-094345857637?w=600',
+  '/assets/img/image1.jpg',
+  '/assets/img/image2.jpg',
+  '/assets/img/image3.jpg',
 ];
 
 const projects = ref([]);
@@ -98,11 +95,15 @@ onMounted(async () => {
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(13, 92, 26, 0.06);
   border: 1px solid var(--color-border);
-  transition: transform var(--duration-normal), box-shadow var(--duration-normal);
+  transition: transform var(--duration-normal) var(--ease-out-expo), box-shadow var(--duration-normal) var(--ease-out-expo), border-color var(--duration-fast);
 }
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 48px rgba(13, 92, 26, 0.12);
+  border-color: rgba(13, 92, 26, 0.12);
+}
+.project-card:active {
+  transform: translateY(-3px) scale(0.99);
 }
 .project-image {
   overflow: hidden;

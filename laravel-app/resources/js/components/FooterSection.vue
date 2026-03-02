@@ -1,10 +1,12 @@
 <script setup>
 import { ref, onMounted, inject } from 'vue';
 import axios from 'axios';
+import { useInView } from '../composables/useInView';
 import { useSmoothScroll } from '../composables/useSmoothScroll';
 
 const openDonateModal = inject('openDonateModal', () => {});
 const tagline = ref('Igniting Minds, Transforming Communities');
+const { targetRef, inView } = useInView();
 const { scrollToElement } = useSmoothScroll();
 
 onMounted(async () => {
@@ -24,19 +26,19 @@ function goToDonate() {
 </script>
 
 <template>
-  <footer class="footer">
+  <footer class="footer" ref="targetRef">
     <div class="footer-bg"></div>
-    <div class="footer-inner">
-      <div class="footer-brand">
+    <div class="footer-inner" :class="{ 'in-view': inView }">
+      <div class="footer-brand reveal reveal-delay-1">
         <strong>The Boven Foundation</strong>
         <p class="footer-tagline">{{ tagline }}</p>
       </div>
-      <nav class="footer-links">
+      <nav class="footer-links reveal reveal-delay-2">
         <a href="#about" @click.prevent="scrollTo('about')">About Us</a>
         <a href="#mission" @click.prevent="scrollTo('mission')">Vision & Mission</a>
         <a href="#donate" @click.prevent="goToDonate">Donate</a>
       </nav>
-      <p class="footer-copy">© {{ new Date().getFullYear() }} The Boven Foundation. All Rights Reserved.</p>
+      <p class="footer-copy reveal reveal-delay-3">© {{ new Date().getFullYear() }} The Boven Foundation. All Rights Reserved.</p>
     </div>
   </footer>
 </template>
@@ -60,6 +62,18 @@ function goToDonate() {
   margin: 0 auto;
   text-align: center;
 }
+.footer-inner :deep(.reveal) {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+}
+.footer-inner.in-view :deep(.reveal) {
+  opacity: 1;
+  transform: translateY(0);
+}
+.footer-inner :deep(.reveal-delay-1) { transition-delay: 0.05s; }
+.footer-inner :deep(.reveal-delay-2) { transition-delay: 0.12s; }
+.footer-inner :deep(.reveal-delay-3) { transition-delay: 0.2s; }
 .footer-brand strong {
   font-family: var(--font-heading);
   font-size: 1.25rem;
@@ -83,9 +97,10 @@ function goToDonate() {
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9375rem;
-  transition: opacity var(--duration-fast);
+  transition: opacity var(--duration-fast), transform var(--duration-fast);
 }
-.footer-links a:hover { opacity: 0.85; }
+.footer-links a:hover { opacity: 0.9; transform: translateY(-1px); }
+.footer-links a:active { transform: translateY(0) scale(0.98); }
 .footer-copy { margin: 0; font-size: 0.875rem; opacity: 0.8; }
 @media (max-width: 768px) {
   .footer {

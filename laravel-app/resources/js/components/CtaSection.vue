@@ -104,6 +104,12 @@ function goToDonate() {
   transform: translateY(-3px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
+.btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+.btn-accent:active {
+  transform: translateY(-1px) scale(0.98);
+}
 .btn-outline:hover {
   background: #1a1f1a;
   color: var(--color-accent);

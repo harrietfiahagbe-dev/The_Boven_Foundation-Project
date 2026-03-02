@@ -147,10 +147,12 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.3s ease, box-shadow 0.4s ease;
 }
 .card-text:hover {
   transform: translateY(-4px);
   border-color: rgba(27, 94, 32, 0.2);
+  box-shadow: 0 12px 32px rgba(13, 92, 26, 0.08);
 }
 .card-heading {
   font-family: var(--font-heading);

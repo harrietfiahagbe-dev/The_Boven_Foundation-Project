@@ -54,23 +54,23 @@ async function submit() {
         <form class="contact-form reveal reveal-delay-3" @submit.prevent="submit">
           <div v-if="success" class="form-success">Thank you. Your message has been sent.</div>
           <div v-if="error" class="form-error">{{ error }}</div>
-          <label>
+          <label class="form-label-reveal reveal-delay-4">
             <span>Name</span>
             <input v-model="form.name" type="text" required />
           </label>
-          <label>
+          <label class="form-label-reveal reveal-delay-5">
             <span>Email</span>
             <input v-model="form.email" type="email" required />
           </label>
-          <label>
+          <label class="form-label-reveal reveal-delay-6">
             <span>Subject</span>
             <input v-model="form.subject" type="text" required />
           </label>
-          <label>
+          <label class="form-label-reveal reveal-delay-7">
             <span>Message</span>
             <textarea v-model="form.message" rows="4" required></textarea>
           </label>
-          <button type="submit" class="btn-submit" :disabled="sending">{{ sending ? 'Sending…' : 'Send Message' }}</button>
+          <button type="submit" class="btn-submit reveal reveal-delay-8" :disabled="sending">{{ sending ? 'Sending…' : 'Send Message' }}</button>
         </form>
       </div>
     </div>
@@ -98,6 +98,20 @@ async function submit() {
 .contact-inner :deep(.reveal-delay-1) { transition-delay: 0.05s; }
 .contact-inner :deep(.reveal-delay-2) { transition-delay: 0.12s; }
 .contact-inner :deep(.reveal-delay-3) { transition-delay: 0.2s; }
+.contact-inner :deep(.reveal-delay-4) { transition-delay: 0.28s; }
+.contact-inner :deep(.reveal-delay-5) { transition-delay: 0.34s; }
+.contact-inner :deep(.reveal-delay-6) { transition-delay: 0.4s; }
+.contact-inner :deep(.reveal-delay-7) { transition-delay: 0.46s; }
+.contact-inner :deep(.reveal-delay-8) { transition-delay: 0.54s; }
+.contact-inner :deep(.form-label-reveal) {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo);
+}
+.contact-inner.in-view :deep(.form-label-reveal) {
+  opacity: 1;
+  transform: translateY(0);
+}
 .section-title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
@@ -131,7 +145,7 @@ async function submit() {
   border-radius: 12px;
   font-family: var(--font-sans);
   font-size: 1rem;
-  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  transition: border-color 0.25s ease, box-shadow 0.3s var(--ease-out-quart);
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
@@ -155,6 +169,9 @@ async function submit() {
 .btn-submit:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(13, 92, 26, 0.35);
+}
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
 }
 .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 @media (max-width: 768px) {

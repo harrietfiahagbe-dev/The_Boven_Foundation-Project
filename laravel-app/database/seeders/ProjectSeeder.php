@@ -29,8 +29,8 @@ class ProjectSeeder extends Seeder
                 'location' => 'Elmina and surrounding communities',
             ],
             [
-                'title' => 'School Lab Support',
-                'description' => 'Providing materials and training to local schools to run practical science and math lessons. Working with teachers and community leaders for sustainable impact.',
+                'title' => 'Classroom Learning Support',
+                'description' => 'Providing desks, learning materials, and supportive classroom environments so children can focus, participate, and thrive in their lessons.',
                 'image' => null,
                 'status' => 'ongoing',
                 'year' => 2025,

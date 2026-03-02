@@ -188,9 +188,9 @@ html {
   height: 3px;
   background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
   z-index: 9999;
-  transition: width 0.1s ease-out;
+  transition: width 0.15s var(--ease-out-quart);
   pointer-events: none;
-  box-shadow: 0 2px 4px rgba(13, 92, 26, 0.2);
+  box-shadow: 0 2px 8px rgba(13, 92, 26, 0.25);
 }
 
 /* Performance optimizations for smooth scrolling */

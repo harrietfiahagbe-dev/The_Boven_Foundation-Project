@@ -25,8 +25,13 @@ const partners = [
         We work with schools, community leaders, and organizations to maximize our impact. Interested in partnering?
         <a href="#contact" @click.prevent="scrollToElement('#contact', 80)">Get in touch</a>.
       </p>
-      <div class="partners-logos reveal reveal-delay-3">
-        <div v-for="(partner, i) in partners" :key="i" class="partner-logo">
+      <div class="partners-logos">
+        <div
+          v-for="(partner, i) in partners"
+          :key="i"
+          class="partner-logo reveal"
+          :class="'reveal-delay-' + Math.min(i + 3, 6)"
+        >
           <img :src="partner.logo" :alt="partner.name" @error="handleImageError($event)" />
         </div>
       </div>
@@ -57,6 +62,18 @@ const partners = [
 .partners-inner :deep(.reveal-delay-1) { transition-delay: 0.1s; }
 .partners-inner :deep(.reveal-delay-2) { transition-delay: 0.2s; }
 .partners-inner :deep(.reveal-delay-3) { transition-delay: 0.3s; }
+.partners-inner :deep(.reveal-delay-4) { transition-delay: 0.38s; }
+.partners-inner :deep(.reveal-delay-5) { transition-delay: 0.46s; }
+.partners-inner :deep(.reveal-delay-6) { transition-delay: 0.54s; }
+.partners-inner :deep(.partner-logo.reveal) {
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+}
+.partners-inner.in-view :deep(.partner-logo.reveal) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 .section-title {
   font-family: var(--font-heading);
   font-size: clamp(1.75rem, 3vw, 2.25rem);

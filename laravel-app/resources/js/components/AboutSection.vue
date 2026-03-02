@@ -13,7 +13,7 @@ Our approach is rooted in collaboration. We work closely with local schools, tea
 At The Boven Foundation, we don't just dream of a more equitable future, we're building it, one student, one school, one community at a time.`;
 
 const aboutText = ref('');
-const { targetRef } = useInView();
+const { targetRef, inView } = useInView();
 
 const paragraphs = computed(() =>
   aboutText.value ? aboutText.value.split(/\n\n+/).filter(Boolean) : []
@@ -30,10 +30,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section id="about" ref="targetRef" class="about">
+  <section id="about" ref="targetRef" class="about" :class="{ 'in-view': inView }">
     <div class="about-bg-pattern"></div>
     <div class="about-wrap">
-      <div class="section-header">
+      <div class="section-header reveal reveal-delay-1">
         <span class="section-label">
           <span class="label-icon">✦</span>
           Who We Are
@@ -42,7 +42,7 @@ onMounted(async () => {
         <div class="title-underline"></div>
       </div>
       <div class="about-inner">
-        <div class="about-text">
+        <div class="about-text reveal reveal-delay-2">
           <div class="text-content">
             <div class="text-card">
               <p v-for="(p, i) in paragraphs" :key="i" class="about-p">{{ p }}</p>
@@ -50,7 +50,7 @@ onMounted(async () => {
           </div>
         </div>
         <div class="about-images">
-          <div class="about-img about-img-main">
+          <div class="about-img about-img-main reveal reveal-delay-3">
             <div class="img-frame"></div>
             <img
               src="/assets/img/picture3.jpeg"
@@ -59,7 +59,7 @@ onMounted(async () => {
             <div class="img-overlay"></div>
             <div class="img-badge">Impact</div>
           </div>
-          <div class="about-img about-img-secondary">
+          <div class="about-img about-img-secondary reveal reveal-delay-4">
             <div class="img-frame"></div>
             <img
               src="/assets/img/picture5.jpeg"
@@ -100,8 +100,20 @@ onMounted(async () => {
 .section-header {
   margin-bottom: 4rem;
   text-align: center;
-  animation: fadeInUp 0.8s ease-out;
 }
+.about .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+.about.in-view .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about .reveal-delay-1 { transition-delay: 0.05s; }
+.about .reveal-delay-2 { transition-delay: 0.15s; }
+.about .reveal-delay-3 { transition-delay: 0.25s; }
+.about .reveal-delay-4 { transition-delay: 0.4s; }
 .section-label {
   display: inline-flex;
   align-items: center;
@@ -339,16 +351,6 @@ onMounted(async () => {
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-}
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 @media (max-width: 968px) {
   .about-inner {
