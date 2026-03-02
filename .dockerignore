@@ -1,0 +1,4 @@
+# Repo root: only ignore top-level noise. laravel-app/ is copied in Dockerfile.
+.git
+.github
+.DS_Store
