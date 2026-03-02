@@ -1,7 +1,7 @@
 # Build from repo root so Render finds this file. All app code is in laravel-app/.
 
-# Stage 1: Build dependencies and frontend assets
-FROM php:8.2-cli AS builder
+# Stage 1: Build dependencies and frontend assets (PHP 8.4 required by composer.lock)
+FROM php:8.4-cli AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git unzip libzip-dev libpng-dev libonig-dev libpq-dev \
@@ -37,7 +37,15 @@ ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-COPY --from=builder /var/www/html/docker/start.sh /start.sh
-RUN chmod +x /start.sh
+# Inline start script so we don't depend on docker/start.sh in repo
+RUN echo '#!/bin/bash' > /start.sh \
+ && echo 'set -e' >> /start.sh \
+ && printf '%s\n' 'if [ -n "$WEBROOT" ]; then sed -i "s#root /var/www/html;#root ${WEBROOT};#g" /etc/nginx/sites-available/default.conf; fi' >> /start.sh \
+ && echo 'cd /var/www/html' >> /start.sh \
+ && echo 'php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force' >> /start.sh \
+ && echo 'mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache' >> /start.sh \
+ && echo 'chown -Rf nginx.nginx storage bootstrap/cache 2>/dev/null || true' >> /start.sh \
+ && echo 'exec /usr/bin/supervisord -n -c /etc/supervisord.conf' >> /start.sh \
+ && chmod +x /start.sh
 
 CMD ["/start.sh"]
