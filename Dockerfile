@@ -37,7 +37,7 @@ ENV APP_DEBUG=false
 ENV LOG_CHANNEL=stderr
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-COPY laravel-app/docker/start.sh /start.sh
+COPY --from=builder /var/www/html/docker/start.sh /start.sh
 RUN chmod +x /start.sh
 
 CMD ["/start.sh"]
