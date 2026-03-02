@@ -37,7 +37,7 @@ onMounted(async () => {
 <template>
   <section id="mission" ref="targetRef" class="mission" :class="{ 'in-view': inView }">
     <div class="mission-inner">
-      <h2 class="section-title reveal reveal-delay-1">Vision & Mission</h2>
+      <h2 class="section-title reveal reveal-delay-1">VISION & MISSION</h2>
       <div class="vision-mission-grid">
         <!-- Top Left: Mission Text Card -->
         <div class="mission-card card-text reveal reveal-delay-2">

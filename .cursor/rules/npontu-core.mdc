@@ -1,25 +1,55 @@
 ---
-description: Laravel backend conventions
+description: Npontu core development standards
 globs:
-- "**/*.php"
-alwaysApply: false
+  - "**/*.php"
+  - "**/*.vue"
+  - "**/*.js"
+alwaysApply: true
 ---
 
-# LARAVEL CONVENTIONS
+# NPONTU TECHNOLOGIES DEVELOPMENT STANDARDS
 
-- Use artisan commands: `php artisan make:model`, `make:controller`, etc.
-- In Laravel 11+, commands in `app/Console/Commands/` auto-register
-- Config over env: Use `config('app.name')` NOT `env('APP_NAME')`
-- Eager load relationships to avoid N+1:
-```php
-$users = User::with('posts')->get();
-```
+## Context First - No Guesswork
 
-- Use soft deletes for models:
-```php
-use SoftDeletes;
-```
+- NEVER write code until you understand the full context
+- List all relevant files before making changes
+- Ask specific clarifying questions only when necessary
+- Follow existing patterns in the codebase
 
-- Form Requests for validation
-- Route Model Binding for cleaner controllers
-- Use transactions for multi-step database operations
+## Challenge Requests - Don't Blindly Follow
+
+- Identify edge cases immediately
+- Ask about inputs, outputs, and constraints
+- Question vague or assumed requirements
+- Refine tasks until goals are clear
+
+## Code Quality Standards
+
+- Write modular, testable, clean code
+- Add comments and docstrings
+- Suggest best practices if current approach is outdated
+- If you know a better way, speak up
+
+## Think Bigger Than the File
+
+- Don't just patch - design properly
+- Consider maintainability and scalability
+- Think about all components: frontend, backend, database, UX
+- Plan for user experience, not just functionality
+
+## Laravel Specific
+
+- Use `php artisan make:{option}` for all components
+- Laravel 11+ has no `app/Console/Kernel.php` - use `bootstrap/app.php`
+- Environment variables in config files, NOT direct `env()` calls
+- Avoid N+1 queries - use eager loading
+- Use soft deletes where appropriate
+
+## Vue + Inertia Specific
+
+- Components in `resources/js/Pages/`
+- Use `<script setup>` syntax (Composition API)
+- Use Inertia::render() for routing
+- Use `<Link>` for navigation, not anchor tags
+- Access shared data via `$page.props`
+- Use Inertia form helpers, not traditional forms

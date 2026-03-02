@@ -1,11 +1,12 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, inject } from 'vue';
 import axios from 'axios';
 import { useSmoothScroll } from '../composables/useSmoothScroll';
 
 const settings = ref({});
 const currentSlide = ref(0);
 const { scrollToElement } = useSmoothScroll();
+const openDonateModal = inject('openDonateModal', () => {});
 
 const slides = [
   '/assets/img/picture.jpeg',
@@ -56,6 +57,14 @@ function goToSlide(index) {
     <div class="hero-content">
       <h1 class="hero-title">{{ settings.hero_headline || 'Empowering Communities Through Education and Action' }}</h1>
       <p class="hero-subtext">{{ settings.hero_subtext || 'Closing the education gap with STEM resources and inclusive learning spaces.' }}</p>
+      <div class="hero-buttons">
+        <button type="button" class="hero-btn hero-btn-primary" @click="scrollTo('about')">
+          About Us
+        </button>
+        <button type="button" class="hero-btn hero-btn-secondary" @click="openDonateModal">
+          Donate
+        </button>
+      </div>
     </div>
     <div class="hero-slider-controls">
       <button
@@ -139,6 +148,50 @@ function goToSlide(index) {
   transform: translateY(24px);
   animation: fade-in-up 0.9s var(--ease-out-expo) 0.35s forwards;
 }
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fade-in-up 0.9s var(--ease-out-expo) 0.5s forwards;
+}
+.hero-btn {
+  padding: 0.875rem 2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out-quart);
+  border: 2px solid transparent;
+  text-shadow: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+.hero-btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.hero-btn-primary:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(13, 92, 26, 0.35);
+}
+.hero-btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
 .hero-slider-controls {
   position: absolute;
   bottom: 4rem;
@@ -208,6 +261,16 @@ function goToSlide(index) {
   .hero-subtext {
     font-size: clamp(1rem, 3vw, 1.125rem);
     margin-bottom: 1.5rem;
+  }
+  .hero-buttons {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .hero-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    flex: 1;
+    min-width: 140px;
   }
   .hero-slider-controls {
     bottom: 2.5rem;

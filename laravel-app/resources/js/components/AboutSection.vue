@@ -4,11 +4,13 @@ import axios from 'axios';
 import { useInView } from '../composables/useInView';
 import AboutStatsSection from './AboutStatsSection.vue';
 
-const DEFAULT_ABOUT = `The Boven's Foundation is a nonprofit closing the STEM education gap in underserved communities across Ghana. We believe every child deserves the tools to excel in science, technology, engineering, and mathematics — regardless of background or gender.
+const DEFAULT_ABOUT = `The Boven Foundation is a nonprofit organization dedicated to closing the education gap in communities across Ghana where access to quality STEM education is limited. We believe every child deserves the tools and opportunities to excel in science, technology, engineering, and mathematics, regardless of their background or gender.
 
-Starting in Elmina and expanding to communities with limited educational access, we provide hands-on learning, mentorship programs, and resources that transform how young people engage with STEM. Through workshops, improved school facilities, and partnerships with local teachers and community leaders, we're making STEM education accessible, inclusive, and impactful.
+Starting in Elmina and expanding to other communities facing educational gaps, we provide hands-on learning experiences, mentorship programs, and resources that transform how young people engage with STEM. Through our work, we are not just teaching, we are empowering the next generation of innovators, problem-solvers, and leaders.
 
-We're not just teaching — we're empowering the next generation of innovators and problem-solvers. As we grow, we're building dedicated STEM labs where students can explore, experiment, and discover their potential. One student, one school, one community at a time.`;
+Our approach is rooted in collaboration. We work closely with local schools, teachers, parents, and community leaders to ensure our programs meet real needs and create lasting change. From organizing workshops that inspire both boys and girls to improving school facilities, we're committed to making STEM education accessible, inclusive, and impactful. As we grow, we envision building dedicated STEM labs where students can explore, experiment, and discover their potential.
+
+At The Boven Foundation, we don't just dream of a more equitable future, we're building it, one student, one school, one community at a time.`;
 
 const aboutText = ref('');
 const { targetRef } = useInView();
