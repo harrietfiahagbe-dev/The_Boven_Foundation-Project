@@ -34,7 +34,8 @@ class ContactController extends Controller
             ], 500);
         }
 
-        // Notify foundation by email (non-blocking: log errors but don't fail request)
+        // Notify foundation by email (non-blocking: log errors but don't fail request).
+        // config/mail.php smtp timeout is short so Gmail on Render doesn't cause 504.
         try {
             $notifyAddress = SiteSetting::getValue(
                 'ngo_email',
