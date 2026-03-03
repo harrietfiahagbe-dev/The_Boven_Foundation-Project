@@ -40,7 +40,10 @@ class ProjectSeeder extends Seeder
         ];
 
         foreach ($projects as $project) {
-            Project::create($project);
+            Project::updateOrCreate(
+                ['title' => $project['title'], 'year' => $project['year']],
+                $project
+            );
         }
     }
 }
