@@ -40,7 +40,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 # Inline start script so we don't depend on docker/start.sh in repo
 RUN echo '#!/bin/bash' > /start.sh \
  && echo 'set -e' >> /start.sh \
- && printf '%s\n' 'if [ -n "$WEBROOT" ]; then sed -i "s#root /var/www/html;#root ${WEBROOT};#g" /etc/nginx/sites-available/default.conf; fi' >> /start.sh \
+ && echo 'if [ -f /var/www/html/conf/nginx/nginx-site.conf ]; then cp /var/www/html/conf/nginx/nginx-site.conf /etc/nginx/sites-available/default.conf; fi' >> /start.sh \
  && echo 'cd /var/www/html' >> /start.sh \
  && echo 'php artisan config:cache && php artisan view:cache && php artisan migrate --force && php artisan db:seed --force' >> /start.sh \
  && echo 'mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache' >> /start.sh \
