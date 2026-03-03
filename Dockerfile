@@ -1,7 +1,7 @@
 # Build from repo root so Render finds this file. All app code is in laravel-app/.
 
 # Stage 1: Build dependencies and frontend assets (PHP 8.4 required by composer.lock)
-FROM php:8.4-cli AS builder
+FROM php:8.2-cli AS builder
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git unzip libzip-dev libpng-dev libonig-dev libpq-dev \
