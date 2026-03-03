@@ -33,6 +33,13 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 **What it does:** Uses your Gmail account to send real emails to donors.
 
+When Gmail SMTP is correctly configured:
+
+- Donors receive a **thank-you email** after submitting the donation form.
+- The foundation receives:
+  - A **contact notification email** whenever someone submits the contact form.
+  - A **donation notification email** whenever a new donation is recorded.
+
 ### Step-by-Step Setup:
 
 #### Step 1: Enable Gmail App Password
@@ -60,6 +67,9 @@ MAIL_PASSWORD=your-16-character-app-password-here
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="thebovenfoundation@gmail.com"
 MAIL_FROM_NAME="The Boven Foundation"
+# Optional: override where internal notifications are sent
+# If set, contact and donation notification emails go here
+MAIL_NOTIFY_TO="thebovenfoundation@gmail.com"
 ```
 
 **Replace:**
@@ -112,6 +122,7 @@ Similar process - get SMTP credentials from your email service provider and upda
 | `MAIL_ENCRYPTION` | Security encryption type | `tls` or `ssl` |
 | `MAIL_FROM_ADDRESS` | Email address shown as sender | `thebovenfoundation@gmail.com` |
 | `MAIL_FROM_NAME` | Name shown as sender | `The Boven Foundation` |
+| `MAIL_NOTIFY_TO` | (Optional) Where admin/contact/donation notifications go | `thebovenfoundation@gmail.com` |
 
 ---
 

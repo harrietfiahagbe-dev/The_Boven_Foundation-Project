@@ -23,7 +23,7 @@ class SiteSettingsSeeder extends Seeder
                 ['title' => 'Community', 'description' => 'We work with communities, not just for them.', 'fante' => 'Mpɔtam'],
                 ['title' => 'Inclusivity', 'description' => 'Every child deserves a fair chance. We prioritize access for those left behind, regardless of gender or background.', 'fante' => 'Obiara ka ho bi'],
             ])],
-            ['key' => 'ngo_email', 'value' => 'thebovenfoundation@gmail.com'],
+            ['key' => 'ngo_email', 'value' => 'bovenfoundation@gmail.com'],
             ['key' => 'ngo_address', 'value' => 'Elmina, Cape Coast, Ghana.'],
             ['key' => 'stat_communities', 'value' => '3'],
             ['key' => 'stat_partners', 'value' => '0'],

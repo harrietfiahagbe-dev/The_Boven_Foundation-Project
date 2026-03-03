@@ -48,7 +48,7 @@ async function submit() {
       <h2 class="section-title reveal reveal-delay-1">CONTACT US</h2>
       <div class="contact-grid">
         <div class="contact-info reveal reveal-delay-2">
-          <p><strong>Email:</strong> <a :href="`mailto:${settings.ngo_email || 'thebovenfoundation@gmail.com'}`">{{ settings.ngo_email || 'thebovenfoundation@gmail.com' }}</a></p>
+          <p><strong>Email:</strong> <a :href="`mailto:${settings.ngo_email || 'bovenfoundation@gmail.com'}`">{{ settings.ngo_email || 'bovenfoundation@gmail.com' }}</a></p>
           <p><strong>Address:</strong> {{ settings.ngo_address || 'Elmina, Cape Coast, Ghana.' }}</p>
         </div>
         <form class="contact-form reveal reveal-delay-3" @submit.prevent="submit">

@@ -115,4 +115,18 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Notification Recipient
+    |--------------------------------------------------------------------------
+    |
+    | This optional address is used for internal notifications such as
+    | contact form submissions and donation confirmations. If it is not
+    | set, the application will fall back to the NGO email stored in the
+    | site settings table or the global "from" address above.
+    |
+    */
+
+    'notify_to' => env('MAIL_NOTIFY_TO'),
+
 ];
